@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nuar. — Standoff 2 DLC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: #0b0b0e;
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .page-backdrop {
+      background: 
+        radial-gradient(ellipse 70% 40% at 50% 18%, rgba(36, 30, 56, 0.4) 0%, rgba(11, 11, 14, 0) 70%),
+        radial-gradient(ellipse 55% 35% at 80% 62%, rgba(42, 24, 60, 0.25) 0%, rgba(11, 11, 14, 0) 70%),
+        #0b0b0e;
+    }
+
+    .strict-card {
+      background-color: #121216;
+      border: 1px solid #1c1c22;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .strict-card:hover {
+      border-color: #32323d;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .feature-bg-overlay {
+      background: linear-gradient(180deg, rgba(14, 14, 18, 0.45) 0%, rgba(14, 14, 18, 0.88) 65%, rgba(14, 14, 18, 0.97) 100%);
+    }
+
+    .hero-vignette {
+      background: radial-gradient(circle at 50% 50%, rgba(11, 11, 14, 0.22) 0%, rgba(11, 11, 14, 0.65) 100%);
+    }
+
+    .hero-menu-box {
+      width: 100%;
+      max-width: 680px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #1c1c22;
+      background-color: #0e0e12;
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .hero-menu-img-fallback {
+      width: 146%;
+      max-width: none;
+      margin-left: -23%;
+      margin-top: -2.8%;
+      margin-bottom: -2.8%;
+      height: auto;
+      display: block;
+    }
+
+    .nuar-wordmark {
+      display: block;
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+      mix-blend-mode: screen;
+    }
+
+    .nuar-wordmark-hero {
+      display: block;
+      height: 68px;
+      width: auto;
+      object-fit: contain;
+      mix-blend-mode: screen;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0b0e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #232329;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="page-backdrop min-h-screen flex flex-col selection:bg-white selection:text-black">
+
+  <header class="w-full border-b border-[#18181e] bg-[#0b0b0e]/90 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-[1060px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <div class="flex items-center gap-7">
+        <a href="#" class="flex items-center gap-2.5 focus:outline-none">
+          <img src="photo_5997084259161673969_x.jpg" alt="N" class="w-8 h-8 rounded-md object-cover border border-[#25252e]" />
+          <img src="BackgroundEraser_20261101_150559559_2.jpg" alt="nuar." class="nuar-wordmark" onerror="handleLogoError(this)" />
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="#features" data-i18n="nav_features" class="text-[13px] font-medium text-[#8a8a93] hover:text-white transition">возможности</a>
+          <a href="#gallery" data-i18n="nav_gallery" class="text-[13px] font-medium text-[#8a8a93] hover:text-white transition">галерея</a>
+          <a href="#faq" data-i18n="nav_faq" class="text-[13px] font-medium text-[#8a8a93] hover:text-white transition">faq</a>
+          <a href="#pricing" data-i18n="nav_pricing" class="text-[13px] font-medium text-[#8a8a93] hover:text-white transition">купить</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <!-- Кнопка смены языка -->
+        <button onclick="toggleLanguage()" class="px-3 py-1.5 rounded-full bg-[#16161b] hover:bg-[#1f1f26] border border-[#24242c] text-[12px] font-semibold text-white transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-[#8a8a93]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span id="lang-label">RU</span>
+        </button>
+
+        <div class="hidden sm:flex items-center gap-4 text-[13px] text-[#8a8a93]">
+          <button onclick="openBotModal('login')" data-i18n="auth_login" class="hover:text-white transition">вход</button>
+          <button onclick="openBotModal('register')" data-i18n="auth_register" class="hover:text-white transition">регистрация</button>
+        </div>
+
+        <a href="#pricing" data-i18n="btn_shop" class="bg-white hover:bg-[#e4e4e7] text-[#0b0b0e] text-[12px] font-semibold px-5 py-2 rounded-full transition shadow-sm">
+          перейти в магазин
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <div class="max-w-[980px] mx-auto px-4 sm:px-6 pt-12 pb-24 space-y-20">
+
+      <section class="relative flex flex-col items-center">
+        <div class="hero-menu-box">
+          <div class="relative w-full overflow-hidden">
+            <!-- Скриншот меняется динамически в зависимости от языка -->
+            <img id="hero-menu-img" src="photo_5997084259161673968_w.png" alt="nuar menu" class="hero-menu-img-fallback opacity-75" onload="autoTrimBlackBars(this)" />
+          </div>
+
+          <div class="hero-vignette absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+            <img src="BackgroundEraser_20261101_150559559_2.jpg" alt="nuar." class="nuar-wordmark-hero mb-6" onerror="handleLogoError(this)" />
+            <a href="https://t.me/nuarDLCbot" target="_blank" rel="noopener noreferrer" data-i18n="hero_try"
+               class="bg-white hover:bg-[#e4e4e7] text-[#0b0b0e] text-[12px] font-semibold px-6 py-2.5 rounded-full transition shadow-xl hover:scale-105">
+              попробуй сейчас
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="space-y-6">
+        <h2 data-i18n="features_title" class="text-[22px] sm:text-[26px] font-bold tracking-tight text-white lowercase">
+          основные возможности продукта
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <div class="strict-card rounded-xl overflow-hidden relative min-h-[240px] flex flex-col justify-end p-6">
+            <img src="photo_5997084259161673968_w.jpg" alt="legit and rage" class="absolute inset-0 w-full h-full object-cover opacity-25 blur-[1px] scale-105 pointer-events-none" />
+            <div class="feature-bg-overlay absolute inset-0 pointer-events-none"></div>
+            <div class="relative z-10 space-y-2">
+              <h3 data-i18n="feat_1_title" class="text-[17px] font-bold text-white lowercase">legit & rage</h3>
+              <p data-i18n="feat_1_desc" class="text-[12px] text-[#8a8a93] leading-relaxed lowercase">
+                тонкая настройка параметров для скрытного или агрессивного стиля игры. алгоритмы полностью адаптированы под актуальные механики standoff 2
+              </p>
+            </div>
+          </div>
+
+          <div class="strict-card rounded-xl overflow-hidden relative min-h-[240px] flex flex-col justify-end p-6">
+            <img src="d286234d-a7be-485d-b1df-dbf6e94c1e0f.jfif" alt="esp and visuals" class="absolute inset-0 w-full h-full object-cover opacity-35 pointer-events-none" />
+            <div class="feature-bg-overlay absolute inset-0 pointer-events-none"></div>
+            <div class="relative z-10 space-y-2">
+              <h3 data-i18n="feat_2_title" class="text-[17px] font-bold text-white lowercase">интерактивный esp и визуалы</h3>
+              <p data-i18n="feat_2_desc" class="text-[12px] text-[#8a8a93] leading-relaxed lowercase">
+                отображение позиций противников, их действий и объектов на карте. настраиваемая цветовая палитра и детальные фильтры отображения
+              </p>
+            </div>
+          </div>
+
+          <div class="strict-card rounded-xl overflow-hidden relative min-h-[240px] flex flex-col justify-end p-6">
+            <img src="ae35c0db-7515-4633-8997-ec36c497d461.jfif" alt="profiles" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" />
+            <div class="feature-bg-overlay absolute inset-0 pointer-events-none"></div>
+            <div class="relative z-10 space-y-3">
+              <h3 data-i18n="feat_3_title" class="text-[17px] font-bold text-white lowercase">облачные профили и конфиги</h3>
+              <p data-i18n="feat_3_desc" class="text-[12px] text-[#8a8a93] leading-relaxed lowercase">
+                сохранение и быстрая загрузка пользовательских настроек в один клик. готовые пресеты для каждого вида оружия
+              </p>
+              <div class="pt-1">
+                <a href="https://t.me/nuarDLCbot" target="_blank" rel="noopener noreferrer" data-i18n="feat_3_btn" class="inline-block px-4 py-1.5 rounded-full border border-[#3a3a44] hover:border-white text-[11px] font-medium text-white transition">
+                  открыть в боте
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="strict-card rounded-xl overflow-hidden relative min-h-[240px] flex flex-col justify-end p-6">
+            <img src="7c1d2654-12d3-4f76-b2e3-0b5888d5e94e.jfif" alt="skinchanger" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" />
+            <div class="feature-bg-overlay absolute inset-0 pointer-events-none"></div>
+            <div class="relative z-10 space-y-3">
+              <h3 data-i18n="feat_4_title" class="text-[17px] font-bold text-white lowercase">скинчейнджер и инвентарь</h3>
+              <p data-i18n="feat_4_desc" class="text-[12px] text-[#8a8a93] leading-relaxed lowercase">
+                полная кастомизация оружия, ножей и перчаток в реальном времени. установка любых скинов и наклеек в один клик прямо в меню
+              </p>
+              <div class="pt-1">
+                <button onclick="openLightbox('7c1d2654-12d3-4f76-b2e3-0b5888d5e94e.jfif', 'Standoff 2 — Скинчейнджер и инвентарь')" data-i18n="feat_4_btn" class="px-4 py-1.5 rounded-full border border-[#3a3a44] hover:border-white text-[11px] font-medium text-white transition">
+                  посмотреть скины
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="gallery" class="space-y-6">
+        <div class="flex items-center justify-between">
+          <h2 data-i18n="gallery_title" class="text-[22px] sm:text-[26px] font-bold tracking-tight text-white lowercase">
+            галерея
+          </h2>
+          <button onclick="openLightbox('d286234d-a7be-485d-b1df-dbf6e94c1e0f.jfif', 'Standoff 2 — Визуалы Chams и нож M9 Bayonet')" data-i18n="gallery_all" class="text-[12px] text-[#8a8a93] hover:text-white transition">
+            смотреть все ›
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+          
+          <div onclick="openLightbox('d286234d-a7be-485d-b1df-dbf6e94c1e0f.jfif', 'Standoff 2 — Chams ESP сквозь объекты и кастомные скины')"
+               class="md:col-span-8 strict-card rounded-xl overflow-hidden relative cursor-pointer group min-h-[280px] sm:min-h-[360px]">
+            <img src="d286234d-a7be-485d-b1df-dbf6e94c1e0f.jfif" alt="Standoff 2 ESP Chams" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+            <img src="photo_5997084259161673968_w.jpg" alt="nuar menu overlay" class="w-[46%] rounded-lg border border-white/15 shadow-2xl absolute bottom-4 left-4 hidden sm:block group-hover:scale-[1.02] transition-transform duration-300" />
+          </div>
+
+          <div class="md:col-span-4 flex flex-col gap-4">
+            <div onclick="openLightbox('ae35c0db-7515-4633-8997-ec36c497d461.jfif', 'Standoff 2 — Осмотр M9 Bayonet и перчаток')"
+                 class="strict-card rounded-xl overflow-hidden relative cursor-pointer group flex-1 min-h-[170px]">
+              <img src="ae35c0db-7515-4633-8997-ec36c497d461.jfif" alt="Standoff 2 Knife Skin" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+            </div>
+
+            <div onclick="openLightbox('7c1d2654-12d3-4f76-b2e3-0b5888d5e94e.jfif', 'Standoff 2 — M4A1 StatTrak и перчатки')"
+                 class="strict-card rounded-xl overflow-hidden relative cursor-pointer group flex-1 min-h-[170px]">
+              <img src="7c1d2654-12d3-4f76-b2e3-0b5888d5e94e.jfif" alt="Standoff 2 M4A1 Skin" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="faq" class="space-y-6">
+        <h2 data-i18n="faq_title" class="text-[22px] sm:text-[26px] font-bold tracking-tight text-white lowercase">
+          часто задаваемые вопросы
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          
+          <div class="strict-card rounded-lg">
+            <button onclick="toggleFaqItem(1)" class="w-full px-4 py-3.5 flex items-center justify-between text-left">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+                <span data-i18n="faq_1_q" class="text-[12px] sm:text-[13px] font-medium text-white lowercase">как активировать подписку?</span>
+              </div>
+              <span id="faq-arrow-1" class="text-[#8a8a93] text-xs transition-transform">⌄</span>
+            </button>
+            <div id="faq-content-1" class="hidden px-4 pb-3.5 pt-1 text-[12px] text-[#8a8a93] border-t border-[#1c1c22]" data-i18n="faq_1_a">
+              Перейдите в официального Telegram-бота <a href="https://t.me/nuarDLCbot" target="_blank" class="text-white underline">@nuarDLCbot</a>, запустите его и выберите нужный тариф. Ключ и актуальный лоадер выдаются автоматически.
+            </div>
+          </div>
+
+          <div class="strict-card rounded-lg">
+            <button onclick="toggleFaqItem(2)" class="w-full px-4 py-3.5 flex items-center justify-between text-left">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                <span data-i18n="faq_2_q" class="text-[12px] sm:text-[13px] font-medium text-white lowercase">каковы системные требования?</span>
+              </div>
+              <span id="faq-arrow-2" class="text-[#8a8a93] text-xs transition-transform">⌄</span>
+            </button>
+            <div id="faq-content-2" class="hidden px-4 pb-3.5 pt-1 text-[12px] text-[#8a8a93] border-t border-[#1c1c22]" data-i18n="faq_2_a">
+              Поддерживаются все устройства Android (Root и без Root), а также эмуляторы ПК с установленной актуальной версией Standoff 2 без просадок FPS.
+            </div>
+          </div>
+
+          <div class="strict-card rounded-lg">
+            <button onclick="toggleFaqItem(3)" class="w-full px-4 py-3.5 flex items-center justify-between text-left">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                <span data-i18n="faq_3_q" class="text-[12px] sm:text-[13px] font-medium text-white lowercase">как связаться с технической поддержкой?</span>
+              </div>
+              <span id="faq-arrow-3" class="text-[#8a8a93] text-xs transition-transform">⌄</span>
+            </button>
+            <div id="faq-content-3" class="hidden px-4 pb-3.5 pt-1 text-[12px] text-[#8a8a93] border-t border-[#1c1c22]" data-i18n="faq_3_a">
+              Связь с саппортом и помощь по установке доступны круглосуточно внутри нашего Telegram-бота <a href="https://t.me/nuarDLCbot" target="_blank" class="text-white underline">@nuarDLCbot</a>.
+            </div>
+          </div>
+
+          <div class="strict-card rounded-lg">
+            <button onclick="toggleFaqItem(4)" class="w-full px-4 py-3.5 flex items-center justify-between text-left">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#3b82f6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+                <span data-i18n="faq_4_q" class="text-[12px] sm:text-[13px] font-medium text-white lowercase">как продлить подписку?</span>
+              </div>
+              <span id="faq-arrow-4" class="text-[#8a8a93] text-xs transition-transform">⌄</span>
+            </button>
+            <div id="faq-content-4" class="hidden px-4 pb-3.5 pt-1 text-[12px] text-[#8a8a93] border-t border-[#1c1c22]" data-i18n="faq_4_a">
+              Выберите подходящий тариф ниже или оплатите продление напрямую в <a href="https://t.me/nuarDLCbot" target="_blank" class="text-white underline">@nuarDLCbot</a>. Срок подписки суммируется автоматически.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="pricing" class="pt-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          
+          <div onclick="openBotPurchase('7 дней', '199₽')" class="strict-card rounded-xl py-10 px-6 text-center cursor-pointer flex flex-col items-center justify-center">
+            <div class="text-[14px] font-bold text-white">7 <span data-i18n="days">дней</span></div>
+            <div class="text-[11px] text-[#6e6e77] mt-0.5 mb-5" data-i18n="sub_label">подписка</div>
+            <div class="w-full max-w-[180px] h-[1px] bg-[#1c1c22] mb-5"></div>
+            <div class="text-[24px] font-extrabold text-white">199₽</div>
+          </div>
+
+          <div onclick="openBotPurchase('14 дней', '349₽')" class="strict-card rounded-xl py-10 px-6 text-center cursor-pointer flex flex-col items-center justify-center">
+            <div class="text-[14px] font-bold text-white">14 <span data-i18n="days">дней</span></div>
+            <div class="text-[11px] text-[#6e6e77] mt-0.5 mb-5" data-i18n="sub_label">подписка</div>
+            <div class="w-full max-w-[180px] h-[1px] bg-[#1c1c22] mb-5"></div>
+            <div class="text-[24px] font-extrabold text-white">349₽</div>
+          </div>
+
+          <div onclick="openBotPurchase('30 дней', '499₽')" class="strict-card rounded-xl py-10 px-6 text-center cursor-pointer flex flex-col items-center justify-center">
+            <div class="text-[14px] font-bold text-white">30 <span data-i18n="days">дней</span></div>
+            <div class="text-[11px] text-[#6e6e77] mt-0.5 mb-5" data-i18n="sub_label">подписка</div>
+            <div class="w-full max-w-[180px] h-[1px] bg-[#1c1c22] mb-5"></div>
+            <div class="text-[24px] font-extrabold text-white">499₽</div>
+          </div>
+
+          <div onclick="openBotPurchase('60 дней', '899₽')" class="strict-card rounded-xl py-10 px-6 text-center cursor-pointer flex flex-col items-center justify-center">
+            <div class="text-[14px] font-bold text-white">60 <span data-i18n="days">дней</span></div>
+            <div class="text-[11px] text-[#6e6e77] mt-0.5 mb-5" data-i18n="sub_label">подписка</div>
+            <div class="w-full max-w-[180px] h-[1px] bg-[#1c1c22] mb-5"></div>
+            <div class="text-[24px] font-extrabold text-white">899₽</div>
+          </div>
+
+          <div onclick="openBotPurchase('90 дней', '1290₽')" class="strict-card rounded-xl py-10 px-6 text-center cursor-pointer flex flex-col items-center justify-center">
+            <div class="text-[14px] font-bold text-white">90 <span data-i18n="days">дней</span></div>
+            <div class="text-[11px] text-[#6e6e77] mt-0.5 mb-5" data-i18n="sub_label">подписка</div>
+            <div class="w-full max-w-[180px] h-[1px] bg-[#1c1c22] mb-5"></div>
+            <div class="text-[24px] font-extrabold text-white">1290₽</div>
+          </div>
+
+          <div onclick="openBotPurchase('Навсегда', '2290₽')" class="strict-card rounded-xl py-10 px-6 text-center cursor-pointer flex flex-col items-center justify-center">
+            <div data-i18n="lifetime" class="text-[14px] font-bold text-white">навсегда</div>
+            <div class="text-[11px] text-[#6e6e77] mt-0.5 mb-5" data-i18n="sub_label">подписка</div>
+            <div class="w-full max-w-[180px] h-[1px] bg-[#1c1c22] mb-5"></div>
+            <div class="text-[24px] font-extrabold text-white">2290₽</div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="border-t border-[#18181e] bg-[#0b0b0e] py-12 px-4 sm:px-6 mt-auto">
+    <div class="max-w-[980px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
+      
+      <div class="md:col-span-4 space-y-4">
+        <div class="flex items-center gap-2.5">
+          <img src="photo_5997084259161673969_x.jpg" alt="N" class="w-8 h-8 rounded-md object-cover border border-[#25252e]" />
+          <img src="BackgroundEraser_20261101_150559559_2.jpg" alt="nuar." class="nuar-wordmark" onerror="handleLogoError(this)" />
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button class="px-3.5 py-1.5 rounded-full bg-[#121216] border border-[#1c1c22] text-[11px] text-[#d4d4d8] flex items-center gap-1.5">
+            <span id="footer-lang">RU</span>
+            <span class="text-[#71717a]">⌄</span>
+          </button>
+
+          <a href="https://t.me/nuarDLCbot" target="_blank" rel="noopener noreferrer"
+             class="w-8 h-8 rounded-full bg-[#121216] border border-[#1c1c22] hover:border-[#32323d] flex items-center justify-center text-[#d4d4d8] hover:text-white transition"
+             title="@nuarDLCbot">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="md:col-span-3 space-y-2 text-[12px]">
+        <div data-i18n="footer_prod" class="font-semibold text-white lowercase">доступные продукты</div>
+        <ul class="space-y-1.5 text-[#6e6e77]">
+          <li><a href="#features" class="hover:text-white transition">standoff 2</a></li>
+          <li><a href="https://t.me/nuarDLCbot" target="_blank" class="hover:text-white transition">nuar loader</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-2 space-y-2 text-[12px]">
+        <div data-i18n="footer_nav" class="font-semibold text-white lowercase">навигация</div>
+        <ul class="space-y-1.5 text-[#6e6e77]">
+          <li><a href="#" data-i18n="nav_main" class="hover:text-white transition">главная</a></li>
+          <li><button onclick="openBotModal('login')" data-i18n="footer_panel" class="hover:text-white transition">панель пользователя</button></li>
+          <li><a href="https://t.me/nuarDLCbot" target="_blank" data-i18n="footer_support" class="hover:text-white transition">поддержка</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-3 space-y-2 text-[12px]">
+        <div data-i18n="footer_legal" class="font-semibold text-white lowercase">правовая информация</div>
+        <ul class="space-y-1.5 text-[#6e6e77]">
+          <li><button onclick="openBotModal('terms')" data-i18n="footer_terms" class="hover:text-white transition">условия и правила</button></li>
+          <li><button onclick="openBotModal('privacy')" data-i18n="footer_privacy" class="hover:text-white transition">политика конфиденциальности</button></li>
+          <li><a href="#" data-i18n="footer_brand" class="hover:text-white transition">бренд</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+  <div id="bot-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="w-full max-w-[400px] strict-card rounded-xl p-6 space-y-5 relative">
+      <button onclick="closeBotModal()" class="absolute top-4 right-4 text-[#8a8a93] hover:text-white text-sm">✕</button>
+
+      <div class="flex items-center gap-3">
+        <img src="photo_5997084259161673969_x.jpg" alt="N" class="w-10 h-10 rounded-lg object-cover border border-[#25252e]" />
+        <div>
+          <img src="BackgroundEraser_20261101_150559559_2.jpg" alt="nuar." class="nuar-wordmark mb-0.5" onerror="handleLogoError(this)" />
+          <div id="bot-modal-title" class="text-[12px] text-[#8a8a93]">Через официального бота @nuarDLCbot</div>
+        </div>
+      </div>
+
+      <div id="bot-plan-summary" class="hidden bg-[#0e0e12] border border-[#1c1c22] rounded-lg p-3.5 flex items-center justify-between">
+        <div>
+          <div class="text-[11px] text-[#8a8a93]" data-i18n="modal_tariff">Тариф</div>
+          <div id="bot-plan-title" class="text-[13px] font-semibold text-white">30 дней подписки</div>
+        </div>
+        <div id="bot-plan-cost" class="text-[16px] font-bold text-white">499₽</div>
+      </div>
+
+      <p class="text-[12px] text-[#8a8a93] leading-relaxed" data-i18n="modal_desc">
+        Регистрация, вход в личный кабинет и автоматическая выдача подписки происходят в нашем Telegram-боте <span class="text-white font-medium">@nuarDLCbot</span>.
+      </p>
+
+      <div class="space-y-2.5">
+        <a href="https://t.me/nuarDLCbot" target="_blank" rel="noopener noreferrer" data-i18n="modal_btn_goto"
+           class="w-full py-2.5 px-4 rounded-full bg-white hover:bg-[#e4e4e7] text-[#0b0b0e] font-semibold text-[12px] flex items-center justify-center gap-2 transition">
+          <span>Перейти в @nuarDLCbot</span>
+        </a>
+        <button onclick="copyBotTag()" data-i18n="modal_btn_copy" class="w-full py-2 px-4 rounded-full bg-[#16161b] hover:bg-[#1c1c22] border border-[#24242c] text-[#d4d4d8] text-[12px] transition">
+          Скопировать @nuarDLCbot
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="lightbox-modal" onclick="closeLightbox()" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/90 backdrop-blur-sm cursor-zoom-out">
+    <div class="max-w-4xl w-full space-y-3" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between text-xs text-[#8a8a93]">
+        <span id="lightbox-caption" class="text-white font-medium">Standoff 2</span>
+        <button onclick="closeLightbox()" data-i18n="lightbox_close" class="px-3 py-1 rounded bg-[#18181e] text-white hover:bg-[#25252e]">Закрыть ✕</button>
+      </div>
+      <img id="lightbox-img" src="" alt="preview" class="w-full h-auto rounded-xl border border-[#25252e] shadow-2xl" />
+    </div>
+  </div>
+
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden bg-[#141419] border border-[#26262f] text-white text-[12px] px-4 py-2.5 rounded-lg shadow-xl">
+    <span id="toast-text">Готово</span>
+  </div>
+
+  <script>
+    const translations = {
+      ru: {
+        nav_features: "возможности",
+        nav_gallery: "галерея",
+        nav_faq: "faq",
+        nav_pricing: "купить",
+        auth_login: "вход",
+        auth_register: "регистрация",
+        btn_shop: "перейти в магазин",
+        hero_try: "попробуй сейчас",
+        features_title: "основные возможности продукта",
+        feat_1_title: "legit & rage",
+        feat_1_desc: "тонкая настройка параметров для скрытного или агрессивного стиля игры. алгоритмы полностью адаптированы под актуальные механики standoff 2",
+        feat_2_title: "интерактивный esp и визуалы",
+        feat_2_desc: "отображение позиций противников, их действий и объектов на карте. настраиваемая цветовая палитра и детальные фильтры отображения",
+        feat_3_title: "облачные профили и конфиги",
+        feat_3_desc: "сохранение и быстрая загрузка пользовательских настроек в один клик. готовые пресеты для каждого вида оружия",
+        feat_3_btn: "открыть в боте",
+        feat_4_title: "скинчейнджер и инвентарь",
+        feat_4_desc: "полная кастомизация оружия, ножей и перчаток в реальном времени. установка любых скинов и наклеек в один клик прямо в меню",
+        feat_4_btn: "посмотреть скины",
+        gallery_title: "галерея",
+        gallery_all: "смотреть все ›",
+        faq_title: "часто задаваемые вопросы",
+        faq_1_q: "как активировать подписку?",
+        faq_1_a: 'Перейдите в официального Telegram-бота <a href="https://t.me/nuarDLCbot" target="_blank" class="text-white underline">@nuarDLCbot</a>, запустите его и выберите нужный тариф. Ключ и актуальный лоадер выдаются автоматически.',
+        faq_2_q: "каковы системные требования?",
+        faq_2_a: "Поддерживаются все устройства Android (Root и без Root), а также эмуляторы ПК с установленной актуальной версией Standoff 2 без просадок FPS.",
+        faq_3_q: "как связаться с технической поддержкой?",
+        faq_3_a: 'Связь с саппортом и помощь по установке доступны круглосуточно внутри нашего Telegram-бота <a href="https://t.me/nuarDLCbot" target="_blank" class="text-white underline">@nuarDLCbot</a>.',
+        faq_4_q: "как продлить подписку?",
+        faq_4_a: 'Выберите подходящий тариф ниже или оплатите продление напрямую в <a href="https://t.me/nuarDLCbot" target="_blank" class="text-white underline">@nuarDLCbot</a>. Срок подписки суммируется автоматически.',
+        days: "дней",
+        lifetime: "навсегда",
+        sub_label: "подписка",
+        footer_prod: "доступные продукты",
+        footer_nav: "навигация",
+        nav_main: "главная",
+        footer_panel: "панель пользователя",
+        footer_support: "поддержка",
+        footer_legal: "правовая информация",
+        footer_terms: "условия и правила",
+        footer_privacy: "политика конфиденциальности",
+        footer_brand: "бренд",
+        modal_tariff: "Тариф",
+        modal_desc: 'Регистрация, вход в личный кабинет и автоматическая выдача подписки происходят в нашем Telegram-боте <span class="text-white font-medium">@nuarDLCbot</span>.',
+        modal_btn_goto: "Перейти в @nuarDLCbot",
+        modal_btn_copy: "Скопировать @nuarDLCbot",
+        lightbox_close: "Закрыть ✕"
+      },
+      en: {
+        nav_features: "features",
+        nav_gallery: "gallery",
+        nav_faq: "faq",
+        nav_pricing: "pricing",
+        auth_login: "login",
+        auth_register: "register",
+        btn_shop: "go to shop",
+        hero_try: "try now",
+        features_title: "key product features",
+        feat_1_title: "legit & rage",
+        feat_1_desc: "fine-tuning parameters for stealth or aggressive playstyles. algorithms are fully adapted to current standoff 2 mechanics",
+        feat_2_title: "interactive esp & visuals",
+        feat_2_desc: "display enemy positions, actions, and map objects. customizable color palette and detailed display filters",
+        feat_3_title: "cloud profiles & configs",
+        feat_3_desc: "save and quickly load custom settings in one click. ready-made presets for every weapon type",
+        feat_3_btn: "open in bot",
+        feat_4_title: "skinchanger & inventory",
+        feat_4_desc: "real-time full customization of weapons, knives, and gloves. install any skins and stickers in one click right in the menu",
+        feat_4_btn: "view skins",
+        gallery_title: "gallery",
+        gallery_all: "view all ›",
+        faq_title: "frequently asked questions",
+        faq_1_q: "how to activate a subscription?",
+        faq_1_a: 'Go to the official Telegram bot <a href="https://t.me/nuarDLCbot" target="_blank" class="text-white underline">@nuarDLCbot</a>, launch it and select the desired plan. The key and loader are issued automatically.',
+        faq_2_q: "what are the system requirements?",
+        faq_2_a: "All Android devices (Root and non-Root) are supported, as well as PC emulators with the latest version of Standoff 2 without FPS drops.",
+        faq_3_q: "how to contact technical support?",
+        faq_3_a: 'Support and installation help are available 24/7 inside our Telegram bot <a href="https://t.me/nuarDLCbot" target="_blank" class="text-white underline">@nuarDLCbot</a>.',
+        faq_4_q: "how to extend subscription?",
+        faq_4_a: 'Choose a plan below or pay for extension directly in <a href="https://t.me/nuarDLCbot" target="_blank" class="text-white underline">@nuarDLCbot</a>. Subscription time accumulates automatically.',
+        days: "days",
+        lifetime: "lifetime",
+        sub_label: "subscription",
+        footer_prod: "available products",
+        footer_nav: "navigation",
+        nav_main: "home",
+        footer_panel: "user panel",
+        footer_support: "support",
+        footer_legal: "legal information",
+        footer_terms: "terms & rules",
+        footer_privacy: "privacy policy",
+        footer_brand: "brand",
+        modal_tariff: "Plan",
+        modal_desc: 'Registration, login, and automatic subscription delivery take place in our Telegram bot <span class="text-white font-medium">@nuarDLCbot</span>.',
+        modal_btn_goto: "Open @nuarDLCbot",
+        modal_btn_copy: "Copy @nuarDLCbot",
+        lightbox_close: "Close ✕"
+      }
+    };
+
+    let currentLang = localStorage.getItem('nuar_lang') || 'ru';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('nuar_lang', lang);
+      document.getElementById('lang-label').textContent = lang.toUpperCase();
+      document.getElementById('footer-lang').textContent = lang.toUpperCase();
+      document.documentElement.lang = lang;
+
+      // Меняем скриншот в зависимости от выбранного языка
+      const heroImg = document.getElementById('hero-menu-img');
+      heroImg.removeAttribute('data-trimmed');
+      if (lang === 'en') {
+        heroImg.src = '15231.png'; // Английская версия скриншота
+      } else {
+        heroImg.src = 'photo_5997084259161673968_w.png'; // Русская версия скриншота
+      }
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+    }
+
+    function toggleLanguage() {
+      const newLang = currentLang === 'ru' ? 'en' : 'ru';
+      setLanguage(newLang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setLanguage(currentLang);
+    });
+
+    const FALLBACK_WORDMARK_URI = "data:image/svg+xml;utf8," + encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 120" fill="none">
+        <rect width="380" height="120" fill="black"/>
+        <path d="M26 36C27 52 28 74 28 91M28 58C35 38 49 30 59 34C69 38 74 58 76 89" stroke="white" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M104 42C102 64 106 87 122 89C138 91 151 69 156 41C156 62 158 81 163 89" stroke="white" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M242 40C224 27 195 39 189 64C184 85 201 94 219 86C233 79 242 60 245 43C245 64 251 83 263 87" stroke="white" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M286 38C291 55 294 74 294 90C295 66 306 38 325 32C332 30 337 32 340 35" stroke="white" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="354" cy="96" r="8" fill="white"/>
+      </svg>`
+    );
+
+    function handleLogoError(img) {
+      if (!img.dataset.triedFirstFallback) {
+        img.dataset.triedFirstFallback = 'true';
+        img.src = 'BackgroundEraser_20261101_150559559.jpg';
+      } else if (!img.dataset.triedSvgFallback) {
+        img.dataset.triedSvgFallback = 'true';
+        img.src = FALLBACK_WORDMARK_URI;
+      }
+    }
+
+    function autoTrimBlackBars(img) {
+      if (img.dataset.trimmed) return;
+      try {
+        const w = img.naturalWidth;
+        const h = img.naturalHeight;
+        if (!w || !h) return;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+
+        const data = ctx.getImageData(0, 0, w, h).data;
+        const threshold = 16;
+
+        let top = 0, bottom = h - 1, left = 0, right = w - 1;
+
+        topLoop: for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            const idx = (y * w + x) * 4;
+            if (data[idx] > threshold || data[idx + 1] > threshold || data[idx + 2] > threshold) {
+              top = y;
+              break topLoop;
+            }
+          }
+        }
+
+        bottomLoop: for (let y = h - 1; y >= top; y--) {
+          for (let x = 0; x < w; x++) {
+            const idx = (y * w + x) * 4;
+            if (data[idx] > threshold || data[idx + 1] > threshold || data[idx + 2] > threshold) {
+              bottom = y;
+              break bottomLoop;
+            }
+          }
+        }
+
+        leftLoop: for (let x = 0; x < w; x++) {
+          for (let y = top; y <= bottom; y++) {
+            const idx = (y * w + x) * 4;
+            if (data[idx] > threshold || data[idx + 1] > threshold || data[idx + 2] > threshold) {
+              left = x;
+              break leftLoop;
+            }
+          }
+        }
+
+        rightLoop: for (let x = w - 1; x >= left; x--) {
+          for (let y = top; y <= bottom; y++) {
+            const idx = (y * w + x) * 4;
+            if (data[idx] > threshold || data[idx + 1] > threshold || data[idx + 2] > threshold) {
+              right = x;
+              break rightLoop;
+            }
+          }
+        }
+
+        const cropW = right - left + 1;
+        const cropH = bottom - top + 1;
+
+        if (cropW > 100 && cropH > 100) {
+          const out = document.createElement('canvas');
+          out.width = cropW;
+          out.height = cropH;
+          out.getContext('2d').drawImage(img, left, top, cropW, cropH, 0, 0, cropW, cropH);
+
+          img.dataset.trimmed = 'true';
+          img.className = 'w-full h-auto block opacity-75';
+          img.src = out.toDataURL('image/png');
+        }
+      } catch (e) {}
+    }
+
+    function toggleFaqItem(id) {
+      const content = document.getElementById('faq-content-' + id);
+      const arrow = document.getElementById('faq-arrow-' + id);
+      content.classList.toggle('hidden');
+      arrow.classList.toggle('rotate-180');
+    }
+
+    function openBotModal(reason) {
+      const modal = document.getElementById('bot-modal');
+      const title = document.getElementById('bot-modal-title');
+      const summary = document.getElementById('bot-plan-summary');
+      summary.classList.add('hidden');
+
+      if (reason === 'register') {
+        title.textContent = currentLang === 'ru' ? 'Регистрация через @nuarDLCbot' : 'Registration via @nuarDLCbot';
+      } else {
+        title.textContent = currentLang === 'ru' ? 'Вход через @nuarDLCbot' : 'Login via @nuarDLCbot';
+      }
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function openBotPurchase(plan, cost) {
+      const modal = document.getElementById('bot-modal');
+      const title = document.getElementById('bot-modal-title');
+      const summary = document.getElementById('bot-plan-summary');
+      title.textContent = currentLang === 'ru' ? 'Оформление подписки в @nuarDLCbot' : 'Subscription checkout in @nuarDLCbot';
+      document.getElementById('bot-plan-title').textContent = plan + (currentLang === 'ru' ? ' подписки' : ' subscription');
+      document.getElementById('bot-plan-cost').textContent = cost;
+      summary.classList.remove('hidden');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeBotModal() {
+      const modal = document.getElementById('bot-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function copyBotTag() {
+      const el = document.createElement('textarea');
+      el.value = '@nuarDLCbot';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      notify(currentLang === 'ru' ? 'Скопировано: @nuarDLCbot' : 'Copied: @nuarDLCbot');
+    }
+
+    function openLightbox(src, caption) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-caption').textContent = caption;
+      const modal = document.getElementById('lightbox-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    let toastTimeout;
+    function notify(text) {
+      const t = document.getElementById('toast');
+      document.getElementById('toast-text').textContent = text;
+      t.classList.remove('hidden');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => t.classList.add('hidden'), 2500);
+    }
+  </script>
+</body>
+</html>
